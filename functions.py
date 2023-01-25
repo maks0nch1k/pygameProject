@@ -22,7 +22,7 @@ def terminate():
 def start_screen():
     intro_text = ["ЗАСТАВКА", "",
                   "Правила игры",
-                  "Чтобы подпрыгнкть нажмите стрелку вверх, пробел или ЛКМ",
+                  "Чтобы подпрыгнкть нажмите стрелку вверх или пробел",
                   "Чтобы начать играть выберете уровень сложности используя цифры на клавиатуре (от 1 до 6)"]
 
     fon = pygame.transform.scale(load_image('background_start_screen.jpg'), (constants.WIDTH, constants.HEIGHT))
