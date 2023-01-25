@@ -1,23 +1,27 @@
 import pygame
-from constants import COLOR, RUNNING, SCREEN, CLOCK, FPS
-from functions import start_screen, load_image
+import constants
+from functions import start_screen, load_image, generate_level, load_level
 
 
 if __name__ == "__main__":
     pygame.init()
-    SCREEN.fill(COLOR)
+    constants.SCREEN.fill(constants.COLOR)
     pygame.display.set_caption("Geometry Trash")
     start_screen()
 
-    # TILE_IMAGES = {'wall': load_image('box.png'), 'empty': load_image('grass.png')}
-    # PLAYER_IMAGE = load_image('mario.png')
+    constants.TILE_IMAGES = {'empty': load_image('empty_tile.png'), 'spike': load_image('spike.png')}
+    constants.LEVEL = load_level("level" + str(constants.DIFFICULTY) + ".txt")
+    constants.PLAYER_IMAGE = load_image('player.png')
 
-    while RUNNING:
+    while constants.RUNNING:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                RUNNING = False
+                constants.RUNNING = False
 
-        SCREEN.fill(COLOR)
-        CLOCK.tick(FPS)
+        constants.SCREEN.fill(constants.COLOR)
+        constants.CLOCK.tick(constants.FPS)
+        PLAYER, level_x, level_y = generate_level(constants.LEVEL)
+        constants.ALL_SPRITES.update(constants.SCREEN)
+        constants.ALL_SPRITES.draw(constants.SCREEN)
         pygame.display.flip()
     pygame.quit()

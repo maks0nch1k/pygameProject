@@ -1,6 +1,5 @@
 import pygame
-from constants import TILE_HEIGHT, TILES_GROUP, ALL_SPRITES,\
-    TILE_WIDTH, PLAYER_GROUP, WIDTH, HEIGHT
+import constants
 
 
 class Camera:
@@ -13,21 +12,21 @@ class Camera:
         obj.rect.y += self.dy
 
     def update(self, target):
-        self.dx = -(target.rect.x + target.rect.w // 2 - WIDTH // 2)
-        self.dy = -(target.rect.y + target.rect.h // 2 - HEIGHT // 2)
+        self.dx = -(target.rect.x + target.rect.w // 2 - constants.WIDTH // 2)
+        self.dy = -(target.rect.y + target.rect.h // 2 - constants.HEIGHT // 2)
 
 
 class Tile(pygame.sprite.Sprite):
     def __init__(self, tile_type, pos_x, pos_y):
-        super().__init__(TILES_GROUP, ALL_SPRITES)
-        self.image = TILE_IMAGES[tile_type]
+        super().__init__(constants.TILES_GROUP, constants.ALL_SPRITES)
+        self.image = constants.TILE_IMAGES[tile_type]
         self.rect = self.image.get_rect().move(
-            TILE_WIDTH * pos_x, TILE_HEIGHT * pos_y)
+            constants.TILE_WIDTH * pos_x, constants.TILE_HEIGHT * pos_y)
 
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, pos_x, pos_y):
-        super().__init__(PLAYER_GROUP, ALL_SPRITES)
-        self.image = PLAYER_IMAGE
+        super().__init__(constants.PLAYER_GROUP, constants.ALL_SPRITES)
+        self.image = constants.PLAYER_IMAGE
         self.rect = self.image.get_rect().move(
-            TILE_WIDTH * pos_x + 15, TILE_HEIGHT * pos_y + 5)
+            constants.TILE_WIDTH * pos_x, constants.TILE_HEIGHT * pos_y)

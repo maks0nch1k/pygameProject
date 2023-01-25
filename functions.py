@@ -1,7 +1,7 @@
 import os
 import pygame
 import sys
-from constants import SCREEN, WIDTH, HEIGHT, CLOCK, FPS, DIFFICULTY
+import constants
 from classes import Tile, Player
 
 
@@ -25,8 +25,8 @@ def start_screen():
                   "Чтобы подпрыгнкть нажмите стрелку вверх, пробел или ЛКМ",
                   "Чтобы начать играть выберете уровень сложности используя цифры на клавиатуре (от 1 до 6)"]
 
-    fon = pygame.transform.scale(load_image('background_start_screen.jpg'), (WIDTH, HEIGHT))
-    SCREEN.blit(fon, (0, 0))
+    fon = pygame.transform.scale(load_image('background_start_screen.jpg'), (constants.WIDTH, constants.HEIGHT))
+    constants.SCREEN.blit(fon, (0, 0))
     font = pygame.font.Font(None, 30)
     text_coord = 50
     for line in intro_text:
@@ -36,7 +36,7 @@ def start_screen():
         intro_rect.top = text_coord
         intro_rect.x = 10
         text_coord += intro_rect.height
-        SCREEN.blit(string_rendered, intro_rect)
+        constants.SCREEN.blit(string_rendered, intro_rect)
 
     running = True
 
@@ -46,25 +46,25 @@ def start_screen():
                 terminate()
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_1:
-                    DIFFICULTY = 1
+                    constants.DIFFICULTY = 1
                     running = False
                 if event.key == pygame.K_2:
-                    DIFFICULTY = 2
+                    constants.DIFFICULTY = 2
                     running = False
                 if event.key == pygame.K_3:
-                    DIFFICULTY = 3
+                    constants.DIFFICULTY = 3
                     running = False
                 if event.key == pygame.K_4:
-                    DIFFICULTY = 4
+                    constants.DIFFICULTY = 4
                     running = False
                 if event.key == pygame.K_5:
-                    DIFFICULTY = 5
+                    constants.DIFFICULTY = 5
                     running = False
                 if event.key == pygame.K_6:
-                    DIFFICULTY = 6
+                    constants.DIFFICULTY = 6
                     running = False
         pygame.display.flip()
-        CLOCK.tick(FPS)
+        constants.CLOCK.tick(constants.FPS)
 
     pygame.time.delay(1000)
 
@@ -76,7 +76,7 @@ def generate_level(level):
             if level[y][x] == '.':
                 Tile('empty', x, y)
             elif level[y][x] == '#':
-                Tile('wall', x, y)
+                Tile('spike', x, y)
             elif level[y][x] == '@':
                 Tile('empty', x, y)
                 new_player = Player(x, y)
@@ -84,7 +84,7 @@ def generate_level(level):
 
 
 def load_level(filename):
-    filename = "data/" + filename
+    filename = "data/levels/" + filename
     with open(filename, 'r') as mapFile:
         level_map = [line.strip() for line in mapFile]
     max_width = max(map(len, level_map))
