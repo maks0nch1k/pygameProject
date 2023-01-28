@@ -30,3 +30,18 @@ class Player(pygame.sprite.Sprite):
         self.image = constants.PLAYER_IMAGE
         self.rect = self.image.get_rect().move(
             constants.TILE_WIDTH * pos_x, constants.TILE_HEIGHT * pos_y)
+
+
+"""class Background(pygame.sprite.Sprite):
+    def __init__(self):
+        super().__init__(constants.ALL_SPRITES)
+        self.image = constants.TILE_IMAGES["background"]
+        self.rect = self.image.get_rect()
+        self.rect.x = -600
+        self.x = -600
+        self.v = 20
+
+    def update(self):
+        if self.x < 0:
+            self.x += self.v / constants.FPS
+            self.rect = self.rect.move(self.x - self.rect.x, 0)"""

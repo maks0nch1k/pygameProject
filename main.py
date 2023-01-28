@@ -10,7 +10,9 @@ if __name__ == "__main__":
     pygame.display.set_caption("Geometry Trash")
     start_screen()
 
-    constants.TILE_IMAGES = {'empty': load_image('empty_tile.png'), 'spike': load_image('spike.png')}
+    constants.TILE_IMAGES = {'empty': load_image('empty_tile.png'),
+                             'spike': load_image('spike.png'),
+                             'background': load_image("backgrounds for levels\\background1.jpg")}
     constants.LEVEL = load_level("level" + str(constants.DIFFICULTY) + ".txt")
     constants.PLAYER_IMAGE = load_image('player.png')
     constants.CAMERA = Camera()
