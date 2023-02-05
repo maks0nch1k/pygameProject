@@ -15,7 +15,8 @@ if __name__ == "__main__":
                              'spike': load_image('spike.png'),
                              'background': load_image(f"backgrounds for levels\\background{random.randint(1, 4)}.jpg")}
     # constants.LEVEL = load_level("level" + str(constants.DIFFICULTY) + ".txt")
-    # constants.PLAYER_IMAGE = load_image('player.png')
+    constants.PLAYER_IMAGE = load_image('player.png')
+    constants.PLAYER = classes.Player(50, 320)
     # constants.CAMERA = Camera()
 
     background1 = classes.Background(0)
@@ -33,7 +34,8 @@ if __name__ == "__main__":
 
         constants.SCREEN.fill(constants.COLOR)
         constants.ALL_SPRITES.update()
-        constants.ALL_SPRITES.draw(constants.SCREEN)
+        constants.BACKGROUND_GROUP.draw(constants.SCREEN)
+        constants.PLAYER_GROUP.draw(background1.image)
         constants.CLOCK.tick(constants.FPS)
         pygame.display.flip()
     pygame.quit()
