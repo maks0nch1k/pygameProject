@@ -34,8 +34,9 @@ if __name__ == "__main__":
 
         constants.SCREEN.fill(constants.COLOR)
         constants.ALL_SPRITES.update()
+        # constants.PLAYER.image = pygame.transform.rotate(constants.PLAYER.image, 10)
         constants.BACKGROUND_GROUP.draw(constants.SCREEN)
-        constants.PLAYER_GROUP.draw(background1.image)
+        constants.PLAYER_GROUP.draw(constants.SCREEN)
         constants.CLOCK.tick(constants.FPS)
         pygame.display.flip()
     pygame.quit()
