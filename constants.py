@@ -11,6 +11,7 @@ DIFFICULTY = 0
 TILE_WIDTH = TILE_HEIGHT = 80
 ALL_SPRITES = pygame.sprite.Group()
 TILES_GROUP = pygame.sprite.Group()
+BACKGROUND_GROUP = pygame.sprite.Group()
 PLAYER_GROUP = pygame.sprite.Group()
 CAMERA = None
 PLAYER = None
