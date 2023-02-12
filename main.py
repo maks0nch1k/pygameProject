@@ -2,7 +2,7 @@ import pygame
 import random
 import classes
 import constants
-from functions import start_screen, load_image, generate_level, load_level
+from functions import start_screen, load_image
 
 
 if __name__ == "__main__":
@@ -14,10 +14,8 @@ if __name__ == "__main__":
     constants.TILE_IMAGES = {'empty': load_image('empty_tile.png'),
                              'spike': load_image('spike.png'),
                              'background': load_image(f"backgrounds for levels\\background{random.randint(1, 4)}.jpg")}
-    # constants.LEVEL = load_level("level" + str(constants.DIFFICULTY) + ".txt")
     constants.PLAYER_IMAGE = load_image('player.png')
     constants.PLAYER = classes.Player(50, 320)
-    # constants.CAMERA = Camera()
 
     background1 = classes.Background(0)
     background2 = classes.Background(constants.WIDTH)
@@ -28,13 +26,10 @@ if __name__ == "__main__":
                 constants.RUNNING = False
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_UP or event.key == pygame.K_SPACE:
-                    pass
-
-        # constants.LEVEL[-1] = constants.LEVEL[-1][:constants.LEVEL[-1].find("@")] + ".@" + constants.LEVEL[-1][constants.LEVEL[-1].find("@") + 2:]
+                    constants.PLAYER.jump()
 
         constants.SCREEN.fill(constants.COLOR)
         constants.ALL_SPRITES.update()
-        # constants.PLAYER.image = pygame.transform.rotate(constants.PLAYER.image, 10)
         constants.BACKGROUND_GROUP.draw(constants.SCREEN)
         constants.PLAYER_GROUP.draw(constants.SCREEN)
         constants.CLOCK.tick(constants.FPS)
