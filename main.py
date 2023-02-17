@@ -2,6 +2,7 @@ import pygame
 import random
 import classes
 import constants
+import functions
 from functions import start_screen, load_image
 
 
@@ -20,6 +21,10 @@ if __name__ == "__main__":
     background1 = classes.Background(0)
     background2 = classes.Background(constants.WIDTH)
 
+    spike1 = classes.Spike(500, 500)
+    spike2 = classes.Spike(1000, 700)
+    spike3 = classes.Spike(740, 280)
+
     while constants.RUNNING:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -32,6 +37,18 @@ if __name__ == "__main__":
         constants.ALL_SPRITES.update()
         constants.BACKGROUND_GROUP.draw(constants.SCREEN)
         constants.PLAYER_GROUP.draw(constants.SCREEN)
+        functions.draw_spikes(constants.SCREEN)
         constants.CLOCK.tick(constants.FPS)
         pygame.display.flip()
+
+        if functions.check_crash():
+            constants.RUNNING = None
+    if constants.RUNNING is None:
+        constants.RUNNING = True
+
+        while constants.RUNNING:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    constants.RUNNING = False
+
     pygame.quit()
