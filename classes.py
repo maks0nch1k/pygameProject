@@ -86,4 +86,8 @@ class Spike(pygame.sprite.Sprite):
         self.pos += self.v_rotation / constants.FPS
 
         self.x0 -= self.v_move / constants.FPS
-        self.rect = self.rect = self.rect.move(self.x0 - self.rect.x, 0)
+        self.rect = self.rect = self.rect.move(self.x0 - (self.rect.x + self.r), 0)
+
+        if constants.PLAYER.rect.x == self.rect.x + self.rect.width and self not in constants.SPIKES_FOR_SCORE:
+            constants.SCORE += 1
+            constants.SPIKES_FOR_SCORE.append(self)
