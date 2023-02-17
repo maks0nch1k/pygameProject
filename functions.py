@@ -75,3 +75,12 @@ def draw_spikes(screen):
         pygame.draw.polygon(screen, color, [elem.a1, elem.b1, elem.c1])
         pygame.draw.polygon(screen, color, [elem.a2, elem.b2, elem.c2])
         pygame.draw.polygon(screen, color, [elem.a3, elem.b3, elem.c3])
+
+
+def check_crash():
+    ans = False
+    for elem in constants.SPIKE_GROUP:
+        if constants.PLAYER.rect.colliderect(elem.rect):
+            ans = True
+            break
+    return ans

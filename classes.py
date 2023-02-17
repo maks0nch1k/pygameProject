@@ -48,7 +48,7 @@ class Spike(pygame.sprite.Sprite):
     def __init__(self, pos_x, pos_y):
         super().__init__(constants.ALL_SPRITES, constants.SPIKE_GROUP)
         self.r = 70
-        self.rect = pygame.Rect(pos_x - self.r, pos_y - self.r, pos_x + self.r, pos_y + self.r)
+        self.rect = pygame.Rect(pos_x - self.r, pos_y - self.r, self.r * 2, self.r * 2)
         print(self.rect)
         self.a1 = None
         self.b1 = None
@@ -83,5 +83,7 @@ class Spike(pygame.sprite.Sprite):
                    self.y0 + self.r * math.sin((self.pos - 15 + 240) / 180 * math.pi))
         self.c3 = (self.x0, self.y0)
 
-        self.x0 -= self.v_move / constants.FPS
         self.pos += self.v_rotation / constants.FPS
+
+        self.x0 -= self.v_move / constants.FPS
+        self.rect = self.rect = self.rect.move(self.x0 - self.rect.x, 0)
