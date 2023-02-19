@@ -13,18 +13,14 @@ class Player(pygame.sprite.Sprite):
         self.pos_y = pos_y
         self.difference = 0
         self.v = 200
+        self.mask = pygame.mask.from_surface(self.image)
 
     def update(self):
         self.pos_y += self.v / constants.FPS
         self.rect = self.rect.move(0, self.pos_y - self.rect.y)
-        if self.v < 0:
-            self.difference -= self.pos_y - self.rect.y
-        if self.difference > 100:
-            self.v = 200
 
     def jump(self):
         self.v = -self.v
-        self.difference = 0
 
 
 class Background(pygame.sprite.Sprite):
@@ -49,7 +45,6 @@ class Spike(pygame.sprite.Sprite):
         super().__init__(constants.ALL_SPRITES, constants.SPIKE_GROUP)
         self.r = 70
         self.rect = pygame.Rect(pos_x - self.r, pos_y - self.r, self.r * 2, self.r * 2)
-        print(self.rect)
         self.a1 = None
         self.b1 = None
         self.c1 = None
@@ -61,8 +56,10 @@ class Spike(pygame.sprite.Sprite):
         self.c3 = None
         self.x0, self.y0 = pos_x, pos_y
         self.pos = 270
-        self.v_rotation = 200
+        self.v_rotation = 600
         self.v_move = 100
+        self.update()
+        self.image = pygame.Surface((self.r * 2, self.r * 2))
 
     def update(self):
         self.a1 = (self.x0 + self.r * math.cos((self.pos + 15) / 180 * math.pi),
