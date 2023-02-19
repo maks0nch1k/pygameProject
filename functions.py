@@ -1,7 +1,10 @@
 import os
 import pygame
 import sys
+
+import classes
 import constants
+import random
 
 
 def load_image(name, colorkey=None):
@@ -71,10 +74,10 @@ def check_crash():
     return ans
 
 
-def end_screen():
+def end_screen(score):
     intro_text = ["ИГРА ОКОНЧЕНА", "",
                   "Ваш счет: " + str(constants.SCORE),
-                  "Ваш рекорд: ",
+                  "Ваш рекорд: " + score,
                   "Чтобы сыграть еще раз нажмите любую клавишу"]
 
     fon = pygame.transform.scale(load_image('background_start_screen.jpg'), (constants.WIDTH, constants.HEIGHT))

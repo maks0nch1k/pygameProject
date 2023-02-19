@@ -34,4 +34,12 @@ if __name__ == "__main__":
 
         functions.game()
 
-        functions.end_screen()
+        with open("data/scores.txt") as file:
+            data = file.read()
+
+        if int(data) < constants.SCORE:
+            with open("data/scores.txt", "w") as file:
+                file.write(str(constants.SCORE))
+            data = str(constants.SCORE) + "  (Вы побили свой рекорд!)"
+
+        functions.end_screen(data)
